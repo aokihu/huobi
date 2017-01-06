@@ -66,6 +66,20 @@ class Huobi {
   }
 
   /**
+   * @function orderInfo
+   * @abstract 获取订单详细内容
+   * @param {Integer} type 查询币种,比特币=1,莱特币=2
+   * @param {ID} orderID 订单ID
+   * @param {String} market 货币市场,人民币='cny',美元='usd'
+   */
+  orderInfo({type=1, orderId='', market='cny'}){
+    return Util.request({method:'order_info',
+                         coin_type:type,
+                         id:orderId}
+    ,{market:market})
+  }
+
+  /**
    * @function buy
    * @abstract 指定价位买入
    * @param {Integer} type 币种,比特币=1,莱特币=2

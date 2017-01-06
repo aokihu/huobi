@@ -73,6 +73,13 @@ huobi.getAccountInfo()
 | type | Integer | Yes | 卖出的币种类型，比特币=1，莱特币=2 |
 | market | String | No| 交易的市场，人民币=cny，美元=usd，默认是人民币
 
+### orderInfo | 获取订单详细信息
+| 参数 | 类型 | 是否必要 | 说明 |
+|-----|------|---------|-----|
+| type | Integer | Yes | 卖出的币种类型，比特币=1，莱特币=2 |
+| orderId | String | Yes | 订单ID|
+| market | String | No| 交易的市场，人民币=cny，美元=usd，默认是人民币
+
 ### getNow | 获取当前的市场价格
 | 参数 | 类型 | 是否必要 | 说明 |
 |-----|------|---------|-----|

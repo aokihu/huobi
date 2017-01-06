@@ -1,0 +1,30 @@
+{
+  "name": "huobi",
+  "version": "1.0.0",
+  "description": "货币的非官方SDK",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aokihu/huobi.git"
+  },
+  "keywords": [
+    "huobi",
+    "bitcoin",
+    "litecoin"
+  ],
+  "author": "aokihu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aokihu/huobi/issues"
+  },
+  "homepage": "https://github.com/aokihu/huobi#readme",
+  "dependencies": {
+    "bluebird": "^3.4.7",
+    "lodash": "^4.17.4",
+    "md5": "^2.2.1",
+    "request": "^2.79.0"
+  }
+}

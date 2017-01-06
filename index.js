@@ -48,11 +48,11 @@ class Huobi {
    * @function getOrders
    * @abstract 获取所有委托订单
    * @param {String} market 币种市场,有cny人民币和usd美元,默认cny
-   * @param {Integer} coinType 查询币种,比特币=1,莱特币=2
+   * @param {Integer} type 查询币种,比特币=1,莱特币=2
    * @return {Promise}
    */
-  getOrders(coinType=1,market='cny'){
-    return Util.request({method:'get_orders',coin_type:coinType},{market:market})
+  getOrders({type=1,market='cny'}){
+    return Util.request({method:'get_orders',coin_type:type},{market:market})
   }
 
   /**
@@ -61,7 +61,7 @@ class Huobi {
    * @param {String} market 币种市场,有cny人民币和usd美元,默认cny
    * @return {Promise}
    */
-  getNewDealOrders(market='cny'){
+  getNewDealOrders({market='cny'}){
     return Util.request({method:'get_new_deal_orders'},{market:market})
   }
 

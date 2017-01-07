@@ -1,3 +1,4 @@
+'use strict'
 /**
  *  >>>> 申明 <<<<
  *  一旦您使用了本项目以及项目代码就代表一切风险将由您自己承担
@@ -8,6 +9,10 @@
 
 // 加载自己的工具
 const Util = require('./lib/util.js')
+const Promise = require('bluebird')
+
+// 常量定义
+const REFERSH_TIME = 6000 // 每6秒刷新一次
 
 class Huobi {
 
@@ -19,7 +24,48 @@ class Huobi {
     Util.serectKey(serectKey)
     Util.APIUrl('https://api.huobi.com/apiv3')
 
+    this._balance_ = {
+      total:0,
+      net:0,
+      cny:0,
+      btc:0,
+      ltc:0,
+      fcny:0,
+      fbtc:0,
+      fltc:0,
+      lcny:0,
+      lbtc:0,
+      lltc:0
+    } // 账户资金
+
+    // 初始化事项
+    this._refresh()
+    setInterval(this._refresh.bind(this), REFERSH_TIME)
+
   }
+
+  // -------------------------------------------------
+  //
+  // 属性定义
+  //
+  // -------------------------------------------------
+
+  /**
+   * 获取当前账户资金余额
+   * @method balance
+   * @return {Object} 包含资金信息的对象
+   * Edit By:aokihu
+   */
+
+  get balance(){
+    return this._balance_
+  }
+
+  // -------------------------------------------------
+  //
+  // 方法定义
+  //
+  // -------------------------------------------------
 
   /**
    * @function getNow
@@ -192,6 +238,38 @@ class Huobi {
                          id:orderId}
     ,{market:market})
 
+  }
+
+  // -----------------------------
+  //
+  // 内部方法定义
+  //
+  // -----------------------------
+
+  /**
+   * @private
+   * @function 刷新数据
+   */
+
+  _refresh(){
+
+    // 更新账户信息
+    this.getAccountInfo()
+    .then(data => {
+      this._balance_ = {
+        total:data.total,
+        net:data.net_asset,
+        cny:data.available_cny_display,
+        btc:data.available_btc_display,
+        ltc:data.available_ltc_display,
+        fcny:data.frozen_cny_display,
+        fbtc:data.frozen_btc_display,
+        fltc:data.frozen_ltc_display,
+        lcny:data.loan_cny_display,
+        lbtc:data.loan_btc_display,
+        lltc:data.loan_ltc_display
+      }
+    })
   }
 
 

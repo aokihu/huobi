@@ -19,17 +19,17 @@ class Huobi {
   /**
    * @function constructor
    * @param {String} accessKey 连接密钥
-   * @param {String} serectKey 密码密钥
+   * @param {String} secretKey 密码密钥
    * @param {Bollean} refresh 是否自动刷新数据
    * @type {String}
    */
 
-  constructor({accessKey='', serectKey='', refresh=true}) {
+  constructor({accessKey='', secretKey='', refresh=true}) {
 
     // 这里输入Access Key 和 Secret Key
 
     Util.accessKey(accessKey)
-    Util.serectKey(serectKey)
+    Util.secretKey(secretKey)
     Util.APIUrl('https://api.huobi.com/apiv3')
 
     this._balance_ = {
@@ -51,7 +51,7 @@ class Huobi {
       this._refresh()
       setInterval(this._refresh.bind(this), REFERSH_TIME)
     }
-    
+
   }
 
   // -------------------------------------------------

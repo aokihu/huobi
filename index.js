@@ -16,7 +16,15 @@ const REFERSH_TIME = 6000 // 每6秒刷新一次
 
 class Huobi {
 
-  constructor({accessKey='', serectKey=''}) {
+  /**
+   * @function constructor
+   * @param {String} accessKey 连接密钥
+   * @param {String} serectKey 密码密钥
+   * @param {Bollean} refresh 是否自动刷新数据
+   * @type {String}
+   */
+
+  constructor({accessKey='', serectKey='', refresh=true}) {
 
     // 这里输入Access Key 和 Secret Key
 
@@ -39,9 +47,11 @@ class Huobi {
     } // 账户资金
 
     // 初始化事项
-    this._refresh()
-    setInterval(this._refresh.bind(this), REFERSH_TIME)
-
+    if(refresh){
+      this._refresh()
+      setInterval(this._refresh.bind(this), REFERSH_TIME)
+    }
+    
   }
 
   // -------------------------------------------------

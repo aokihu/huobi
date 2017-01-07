@@ -11,6 +11,8 @@
 const Util = require('./lib/util.js')
 const Promise = require('bluebird')
 
+// 币种定义
+const COIN_TYPE = ['no','btc','ltc']
 // 常量定义
 const REFERSH_TIME = 6000 // 每6秒刷新一次
 
@@ -185,7 +187,6 @@ class Huobi {
     return Util.request(must, opt)
   }
 
-
   /**
    * @function buyMarket
    * @abstract 市场价位买入
@@ -231,6 +232,23 @@ class Huobi {
     }
 
     return Util.request(must, opt)
+  }
+
+
+  /**
+   * @function sellAllMarket
+   * @abstract 市场价全部卖出
+   * @param {Integer} type 币种,比特币=1,莱特币=2
+   * @param {Number} amount 购买数量
+   * @param {String} pwd 如果设置了交易密码,请添这个参数，如果没有就不用管了
+   * @param {String} market 货币市场,人民币='cny',美元='usd'
+   */
+  sellAllMarket({type=1,pwd='',market='cny'}){
+
+    // 计算交易金额
+    let amount = this._balance_[COIN_TYPE[type]]
+    return this.sellMarket({type:type,amount:amount,pwd='',market:market})
+
   }
 
   /**

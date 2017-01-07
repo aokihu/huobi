@@ -270,6 +270,7 @@ class Huobi {
         lltc:data.loan_ltc_display
       }
     })
+    .catch(err => console.log(err))
   }
 
 

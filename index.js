@@ -247,7 +247,7 @@ class Huobi {
 
     // 计算交易金额
     let amount = this._balance_[COIN_TYPE[type]]
-    return this.sellMarket({type:type,amount:amount,pwd='',market:market})
+    return this.sellMarket({type:type,amount:amount,pwd:'',market:market})
 
   }
 
